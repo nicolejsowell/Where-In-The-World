@@ -1,7 +1,7 @@
 function getWeatherInfo (capital){
     $.ajax({ 
         method: "get", 
-        url: "http://api.openweathermap.org/data/2.5/weather?q="+capital+"&appid=3950d18a26c81952f54e0003327fe8ed&unit=imperial"
+        url: "http://api.openweathermap.org/data/2.5/weather?q="+capital+"&appid=3950d18a26c81952f54e0003327fe8ed&units=imperial"
     }).then(function(response){
         //var humidity = response.main.humidity;
         var obj = {
