@@ -28,7 +28,7 @@ jQuery(function () {
         onRegionClick: function (event, code) {
             var map = $('#map1').vectorMap('get', 'mapObject');
             console.log(map.getRegionName(code));
-            getWeatherInfo(map.getRegionName(code));
+
         },
         series: {
             regions: [{
