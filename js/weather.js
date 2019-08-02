@@ -1,27 +1,11 @@
-function getWeatherInfo (capital){
-    $.ajax({ 
-        method: "get", 
-        url: "http://api.openweathermap.org/data/2.5/weather?q="+capital+"&appid=3950d18a26c81952f54e0003327fe8ed&units=imperial"
-    }).then(function(response){
-        //var humidity = response.main.humidity;
-        var obj = {
-            temperature: response.main.temp,
-            humidity: response.main.humidity,
-            condition: response.weather.main,
-            timezone: response.timezone,
-            windspeed: response.wind.speed,
-            direction: response.wind.deg,
-            daylight: response.sys.sunrise,
-            night: response.sys.sunset,
-            appearance: response.clouds.all
 
+function getWeatherInfo(capital) {
+    return jQuery.ajax({
+        type: "get",
+        url: "http://api.openweathermap.org/data/2.5/weather?q=" + capital + "&appid=3950d18a26c81952f54e0003327fe8ed&units=imperial"
 
-        };
-
-        return obj;
     });
 }
-
 
  var date = new Date(sec * 1000); {
    var timestr = date.toLocaleTimeString();
@@ -42,3 +26,4 @@ function getWeatherInfo (capital){
        document.body.className = 'sunny';
    }
 }
+
