@@ -16,18 +16,70 @@ jQuery(function () {
         $('#map1').vectorMap('set', 'focus', { scale: 1, x: 0.5, y: 0.5, animate: true });
     });
 
+    function showCarousel() {
+
+
+        // first panel
+        $('#country-name').text(country.name);
+        console.log(country.flag);
+        $('#country-flag').attr('src', country.flag);
+
+        // second panel
+        $('#capital').text(country.capital);
+        $('#today').text(new Date());
+        $('#icon').attr('src', 'http://openweathermap.org/img/wn/' + country.weather.weather[0].icon + '@2x.png');
+        $('#conditions').text(country.weather.weather[0].description);
+        $('#temp').text(Math.floor(country.weather.main.temp));
+        // third panel
+
+
+
+
+
+        $('.modal').modal();
+        $('.modal').modal('open');
+        $('.carousel').carousel(
+            {
+                dist: 0,
+                padding: 0,
+                fullWidth: false,
+                indicators: true,
+                duration: 100,
+            });
+    }
+
     $('#map1').vectorMap({
         map: 'world_mill_en',
         panOnDrag: true,
         focusOn: {
             x: 0.5,
             y: 0.5,
-            scale: 2,
+            scale: 1,
             animate: true
         },
         onRegionClick: function (event, code) {
+
+
+
             var map = $('#map1').vectorMap('get', 'mapObject');
-            console.log(map.getRegionName(code));
+            country.name = map.getRegionName(code);
+            country.code = code;
+            country.getCountry().then(function (response) {
+                console.log('response', response);
+                country.capital = response.capital;
+                country.name = response.name;
+                country.flag = response.flag;
+
+            }).then(function (response) {
+
+                getWeatherInfo(country.capital).then(function (data) {
+                    console.log('weather', data);
+                    country.weather = data;
+                    //
+                    showCarousel();
+                });
+
+            });
 
         },
         series: {
