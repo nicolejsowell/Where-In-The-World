@@ -1,15 +1,23 @@
-<title>jVectorMap demo</title>
-  <link rel="stylesheet" media="all" href="https://germini.info/js/jqvmap/src/jquery-jvectormap.css"/>
-  <script src="https://germini.info/js/jqvmap/src/jquery-1.8.2.js"></script>
+<head>
+  <title>jVectorMap demo</title>
+
+  <link rel="stylesheet" media="all" href="https://germini.info/js/jqvmap/src/jquery-jvectormap.css" />
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Import materialize.css -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://germini.info/js/jqvmap/src/jquery-jvectormap.js"></script>
   <script src="https://germini.info/js/jqvmap/src/jquery-mousewheel.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/jvectormap.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/abstract-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/abstract-canvas-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/abstract-shape-element.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/svg-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/svg-group-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/svg-canvas-element.js"></script>
@@ -18,7 +26,6 @@
   <script src="https://germini.info/js/jqvmap/src/svg-circle-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/svg-image-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/svg-text-element.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/vml-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/vml-group-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/vml-canvas-element.js"></script>
@@ -26,11 +33,9 @@
   <script src="https://germini.info/js/jqvmap/src/vml-path-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/vml-circle-element.js"></script>
   <script src="https://germini.info/js/jqvmap/src/vml-image-element.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/map-object.js"></script>
   <script src="https://germini.info/js/jqvmap/src/region.js"></script>
   <script src="https://germini.info/js/jqvmap/src/marker.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/vector-canvas.js"></script>
   <script src="https://germini.info/js/jqvmap/src/simple-scale.js"></script>
   <script src="https://germini.info/js/jqvmap/src/ordinal-scale.js"></script>
@@ -40,19 +45,68 @@
   <script src="https://germini.info/js/jqvmap/src/data-series.js"></script>
   <script src="https://germini.info/js/jqvmap/src/proj.js"></script>
   <script src="https://germini.info/js/jqvmap/src/map.js"></script>
-
   <script src="https://germini.info/js/jqvmap/src/jquery-jvectormap-world-mill-en.js"></script>
-  <script>
-    
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+
+
+</head>
+
 
 <body>
   <div style="height: 5px"></div>
   <div id="map1" style="width: 100%; height: 97%"></div>
-  <button id="focus-single">Focus on Australia</button>
-  <button id="focus-multiple">Focus on Australia and Japan</button>
-  <button id="focus-coords">Focus on Cyprus</button>
-  <button id="focus-init">Return to the initial state</button>
+
+  <!-- modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+
+      <div class="row">
+          <a class="btn btn-outline-secondary prev" title="go back"> <i class="material-icons">chevron_left</i></a>
+          <a class="btn btn-outline-secondary next" title="more"> <i class="material-icons">chevron_right</i></a>
+      </div>
+      <div class="row">
+          
+        <div class="col s6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <h6 id='country-name'></h6>
+              <img id='country-flag' style="max-width:100%; object-fit: contain; height: 234px">
+            </div>
+          </div>
+        </div>
+
+        <div class="col s6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <img src="" id='icon' style="width: 128px; height: 128px;">
+              <span style="font-size: 6rem" id='temp'></span><span
+                style="font-size: 2rem; line-height: 10px">&deg;F</span><br>
+              <span style="font-size: 2rem" id='conditions'></span><br>
+              <span style="font-size: 1rem" id='humidity'></span><br>
+              <span style="font-size: 1rem" id='wind'></span><br>
+              <span style="font-size: 1rem" id='visibility'></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- footer -->
+    <div class="modal-footer">
+
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">ok</a>
+    </div>
+  </div>
+
+
+  <!-- <script src="database.js"></script> -->
+  <script src="js/weather.js"></script>
+  <script src="js/country.js"></script>
 
   <script src="app.js"></script>
+
 </body>
+<html:5></html:5>
