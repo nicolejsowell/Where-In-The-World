@@ -18,6 +18,8 @@ jQuery(function () {
 
     function showCarousel() {
 
+        $('#country-flag').attr('src', '');
+        $('#icon').attr('src', '');
 
         // first panel
         $('#country-name').text(country.name);
@@ -25,27 +27,23 @@ jQuery(function () {
         $('#country-flag').attr('src', country.flag);
 
         // second panel
-        $('#capital').text(country.capital);
-        $('#today').text(new Date());
+        $('#capital').text('Conditions in ' + country.capital);
+        //$('#today').text(new Date());
         $('#icon').attr('src', 'http://openweathermap.org/img/wn/' + country.weather.weather[0].icon + '@2x.png');
         $('#conditions').text(country.weather.weather[0].description);
         $('#temp').text(Math.floor(country.weather.main.temp));
+        $('#humidity').text('Humidity: ' + country.weather.main.humidity + '%');
+        $('#wind').text('Wind: ' + Math.floor(country.weather.wind.speed) + 'mph ' + degToCompass(country.weather.wind.deg));
+        if (typeof (country.weather.visibility) === 'number') {
+            $('#visibility').text('Visibility: ' + Math.floor(country.weather.visibility / 1000) + 'mi');
+        }
+
         // third panel
 
 
-
-
-
         $('.modal').modal();
-        $('.modal').modal('open');
-        $('.carousel').carousel(
-            {
-                dist: 0,
-                padding: 0,
-                fullWidth: false,
-                indicators: true,
-                duration: 100,
-            });
+        $('.modal').modal('open');        
+
     }
 
     $('#map1').vectorMap({
@@ -65,18 +63,27 @@ jQuery(function () {
             country.name = map.getRegionName(code);
             country.code = code;
             country.getCountry().then(function (response) {
-                console.log('response', response);
+                //console.log('response', response);
                 country.capital = response.capital;
                 country.name = response.name;
                 country.flag = response.flag;
 
             }).then(function (response) {
+                var capitalCity = country.capital;
+                if (capitalCity.indexOf('Washington,') < 0) {
+                    if (capitalCity.indexOf(' ') >= 0) {
+                        capitalCity = capitalCity.substr(0, capitalCity.indexOf(' '))
+                    }
+                }
 
-                getWeatherInfo(country.capital).then(function (data) {
-                    console.log('weather', data);
+                console.log('capitalCity', capitalCity);
+                getWeatherInfo(capitalCity).then(function (data) {
+                    //console.log('weather', data);
                     country.weather = data;
                     //
-                    showCarousel();
+                    setTimeout(() => {
+                        showCarousel();
+                    }, 100);
                 });
 
             });
@@ -273,4 +280,19 @@ jQuery(function () {
             }]
         }
     });
+
+    // move next carousel
+    $('.moveNextCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('next');
+    });
+
+    // move prev carousel
+    $('.movePrevCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('prev');
+    });
+
 })
