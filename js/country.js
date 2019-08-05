@@ -3,6 +3,9 @@ var country = {
     code: '',
     flag: '',
     currency: '',
+    rate: 0.0,
+    currencyName: '',
+    currencySymbol: '',
     population: '',
     area: '',
     weather: {},
@@ -65,5 +68,5 @@ var country = {
         
         // getCountryData(this.name);
     }
-
+    
 }
