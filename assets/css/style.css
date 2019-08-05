@@ -1,0 +1,149 @@
+.img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 320px;
+  width: 100%;
+  float: left;
+  position: relative;
+  cursor: pointer;
+}
+
+.modal-content {
+  max-height: 529px;
+}
+
+#country-name,
+#capital,
+#conditions,
+#currency-rate,
+#capital-name,
+#country-info {
+  font-size: 2rem;
+}
+
+#temp {
+  font-size: 6rem;
+}
+
+#decoration {
+  font-size: 2rem;
+  line-height: 10px;
+}
+
+#humidity,
+#wind,
+#visibility {
+  font-size: 1rem;
+}
+
+#icon {
+  width: 128px;
+  height: 128px;
+}
+
+#current-weather-conditions {
+  height: 320px;
+}
+
+#current-exchange-rate {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 2.4rem;
+  height: 320px;
+  text-align: center;
+}
+
+#rate {
+  position: absolute;
+  text-align: center;
+  bottom: 50%;
+  left: 12%;
+}
+
+#currency-name {
+  position: absolute;
+  display: inline-block;
+  bottom: 40%;
+  font-size: 20px;
+  left: 13%;
+}
+
+#attraction-name,
+#food-name {
+  font-size: 2.4rem;
+}
+
+/* enlarge modal */
+/* background */
+#modal-full-screen {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: black; /* Fallback color */
+  background-color: rgba(black, 0.9); /* Black w/ opacity */
+}
+
+/* image in modal */
+#modal-full-screen-image {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+}
+
+#image-caption {
+  display: block;
+  margin: auto;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+/* animation
+ */
+#modal-full-screen-image,
+#image-caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* large modal close button */
+#modal-full-screen-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
