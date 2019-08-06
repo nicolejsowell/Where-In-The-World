@@ -6,8 +6,8 @@ Where in the world is an interactive World Map created to assist travelers with 
 
 
 ## Visuals
-<img src="assets/images/world.PNG" alt="World Map" height="250" width="295"> <img src="assets/images/usa-full-screen.PNG" alt="Attractions" height="250" width="295"> <img src="assets/images/usa-card-1.PNG" alt="flag" height="250" width="295"> <img src="assets/images/usa-card-2.PNG" alt="weather" height="250" width="295">
-<img src="assets/images/usa-card-3.PNG" alt="food" height="250" width="295">
+<img src="assets/images/world.PNG" alt="World Map" height="250" width="328"> <img src="assets/images/usa-full-screen.PNG" alt="Attractions" height="250" width="328"> <img src="assets/images/usa-card-1.PNG" alt="flag" height="250" width="328"> <img src="assets/images/usa-card-2.PNG" alt="weather" height="250" width="328">
+<img src="assets/images/usa-card-3.PNG" alt="food" height="250" width="328">
 
 ## Resources
 API:
@@ -31,7 +31,7 @@ https://materializecss.com/modals.html [Grid & Modal]
 
 JSON:
 
-[Object that contain dish name and image]
+[Object that contains dish name and image]
 
 Moment JS:
 
