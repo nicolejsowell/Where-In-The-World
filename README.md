@@ -29,11 +29,11 @@ Framework:
 https://materializecss.com/modals.html [Grid & Modal]
 
 
-JSON
+JSON:
 
 [Object that contain dish name and image]
 
-Moment JS
+Moment JS:
 
 [Time Formatting]
  
@@ -47,8 +47,7 @@ Please make sure to update tests as appropriate.
 
 
 ## Authors and acknowledgment
-Foezy Az9000
-https://github.com/az9000 
+Fawzi Alami
 
 Justin Lockridge
 
