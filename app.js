@@ -108,7 +108,7 @@ jQuery(function () {
 
       // first panel
       $("#capital").text("Current conditions");
-      //$('#today').text(new Date());
+      console.log(country.weather.weather[0]);
       $("#icon").attr(
         "src",
         "http://openweathermap.org/img/wn/" +
