@@ -1226,6 +1226,18 @@ var coordinates = [
     }
 ];
 
+function getCurrentTime(cityTz) {
+    // current local time
+    var date = new Date();
+    var localTime = date.getTime();
+    var localOffset = date.getTimezoneOffset() * 60000;
+    var utcTime = localTime + localOffset;
+    var cityTime = utcTime + (cityTz * 1000);
+    var newDate = newDate(cityTime);
+
+    return newDate.toLocaleString();
+}
+
 function getLatitude(code) {
     for (index in coordinates) {
         if (coordinates[index].code === code) {

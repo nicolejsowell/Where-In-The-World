@@ -90,6 +90,12 @@ jQuery(function () {
       );
       $("#capital-pic").attr("data-name", country.capital);
       $("#capital-pic").attr("data-url", country.capitalImage);
+
+      // local time
+      country.timezone = getCurrentTime(country.weather.timezone);
+      var m = moment(country.timezone).format("dddd, MMMM Do YYYY, h:mm a");
+      $('#theTime').text(m);
+
     } else if (group === 2) {
       $("#two").show();
 
@@ -118,7 +124,6 @@ jQuery(function () {
         "mph " +
         degToCompass(country.weather.wind.deg)
       );
-
       
       if (typeof country.weather.visibility === "number") {
         $("#visibility").text(
@@ -278,7 +283,7 @@ jQuery(function () {
           getWeatherInfo(country.latitude, country.longitude)
             .then(function (data) {
               //console.log("weather", data);
-              country.weather = data;
+              country.weather = data;              
             })
             .fail(function (err) {
               var errMsg =
@@ -521,4 +526,17 @@ jQuery(function () {
       }
     });
   }
+
+  function getCurrentTime(cityTz) {
+    // current local time
+    var date = new Date();
+    var localTime = date.getTime();
+    var localOffset = date.getTimezoneOffset() * 60000;
+    var utcTime = localTime + localOffset;
+    var cityTime = utcTime + (cityTz * 1000);
+    var newDate = new Date(cityTime);
+
+    return newDate.toLocaleString();
+  }
+
 });
