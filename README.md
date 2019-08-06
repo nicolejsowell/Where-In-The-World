@@ -11,6 +11,7 @@ Where in the world is an interactive World Map created to assist travelers with 
 
 ## Resources
 API:
+
 http://jvectormap.com/ [BACKGROUND MAP]
 
 https://restcountries.eu/ [CAPITAL, FLAG IMAGE, LATITUDE & LONGITUDE, CURRENCY CODE]
@@ -20,15 +21,21 @@ https://currency-exchange.p.rapidapi.com/exchange [CURRENCY RATE API]
 https://rapidapi.com/community/api/open-weather-map [WEATHER CONDITIONS]
 
 REAL-TIME DATABASE:
+
 https://firebase.google.com [ATTRACTION CAPITAL, NAME & IMAGE]
 
 Framework:
+
 https://materializecss.com/modals.html [Grid & Modal]
 
 
-JSON [Object that contain dish name and image]
+JSON
 
-Moment JS [Time Formatting]
+[Object that contain dish name and image]
+
+Moment JS
+
+[Time Formatting]
  
 
 
