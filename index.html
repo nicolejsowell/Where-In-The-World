@@ -53,6 +53,9 @@
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
 
+  <!-- moment js -->
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+
   <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
@@ -66,18 +69,25 @@
     <div class="modal-content">
 
       <!-- nav buttons -->
-      <div class="row">
-        <a class="btn btn-outline-secondary prev" title="go back" id='prev'> <i
-            class="material-icons">chevron_left</i></a>
-        <a class="btn btn-outline-secondary next" title="more" id='next'> <i
-            class="material-icons">chevron_right</i></a>
+      <div class="row valign-wrapper">
+        <div class="col s3 m2 l1">
+            <a class="waves-effect btn blue-grey darken-1 prev hoverable" title="go back" id='prev'> <i
+              class="material-icons md-36">chevron_left</i></a>
+        </div>
+        <div class="col s3 m2 l1">
+          <a class="waves-effect btn blue-grey darken-1 next hoverable" title="more" id='next'> <i
+              class="material-icons md-36">chevron_right</i></a>
+        </div>
+        <div class="col s6 m8 l10 right-align">
+          <div class="white-text" id="theTime"></div>
+        </div>
       </div>
-
+      <div class="divider blue-grey darken-1"></div>
       <!-- Group 1 -->
       <div class="row" id='one'>
 
-        <div class="col s6" id='flag-card'>
-          <div class="card blue-grey darken-1 white-text">
+        <div class="col s12 l6" id='flag-card'>
+          <div class="card blue-grey darken-1 white-text hoverable">
             <div class="card-content">
               <span id='country-name'></span>
             </div>
@@ -90,8 +100,8 @@
         </div>
 
         <!-- Capital image -->
-        <div class="col s6" id='capital-card'>
-          <div class="card blue-grey darken-1 white-text">
+        <div class="col s12 l6" id='capital-card'>
+          <div class="card blue-grey darken-1 white-text hoverable">
             <div class="card-content">
               <span id='capital-name'>Capital</span>
             </div>
@@ -109,8 +119,8 @@
       <div class="row" id='two'>
 
         <!-- Weather -->
-        <div class="col s6" id='weather-card'>
-          <div class="card blue-grey darken-1">
+        <div class="col s12 l6" id='weather-card'>
+          <div class="card blue-grey darken-1 hoverable">
 
             <div class="card-content white-text">
               <span id='capital'>Weather</span>
@@ -144,8 +154,8 @@
           <div class="white-text">The weather</div>
         </div>
 
-        <div class="col s6" id='currency-card'>
-          <div class="card blue-grey darken-1 white-text">
+        <div class="col s12 l6" id='currency-card'>
+          <div class="card blue-grey darken-1 white-text hoverable">
             <div class="card-content">
               <span id='currency-rate'>Currency exchange rate</span>
             </div>
@@ -174,8 +184,8 @@
       <!-- Group 3 -->
       <div class="row" id='three'>
 
-        <div class="col s6" id='attraction-card'>
-          <div class="card blue-grey darken-1 white-text">
+        <div class="col s12 m6 l6" id='attraction-card'>
+          <div class="card blue-grey darken-1 white-text hoverable">
             <div class="card-content">
               <span id='attraction-name'></span>
             </div>
@@ -188,8 +198,8 @@
         </div>
 
         <!-- food image -->
-        <div class="col s6" id='food-card'>
-          <div class="card blue-grey darken-1 white-text">
+        <div class="col s12 m6 l6" id='food-card'>
+          <div class="card blue-grey darken-1 white-text hoverable">
             <div class="card-content">
               <span id='food-name'></span>
             </div>
@@ -206,9 +216,8 @@
     </div>
 
     <!-- footer -->
-    <div class="modal-footer blue-grey darken-3">
-
-      <a href="#!" class="modal-action modal-close waves-effect waves-green white-text btn-flat">ok</a>
+    <div class="modal-footer blue-grey darken-3">      
+      <a href="#!" class="modal-action modal-close white-text btn-flat">ok</a>
     </div>
   </div>
 
