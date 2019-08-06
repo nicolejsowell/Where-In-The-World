@@ -1,17 +1,17 @@
 jQuery.noConflict();
-jQuery(function() {
+jQuery(function () {
   var $ = jQuery;
 
-  $("#focus-single").click(function() {
+  $("#focus-single").click(function () {
     $("#map1").vectorMap("set", "focus", { region: "AU", animate: true });
   });
-  $("#focus-multiple").click(function() {
+  $("#focus-multiple").click(function () {
     $("#map1").vectorMap("set", "focus", {
       regions: ["AU", "JP"],
       animate: true
     });
   });
-  $("#focus-coords").click(function() {
+  $("#focus-coords").click(function () {
     $("#map1").vectorMap("set", "focus", {
       scale: 7,
       lat: 35,
@@ -19,7 +19,7 @@ jQuery(function() {
       animate: true
     });
   });
-  $("#focus-init").click(function() {
+  $("#focus-init").click(function () {
     $("#map1").vectorMap("set", "focus", {
       scale: 1,
       x: 0.5,
@@ -39,11 +39,11 @@ jQuery(function() {
     showCardGroup(index);
 
     $(".modal").modal({
-        inDuration: 300, // Transition in duration
-        outDuration: 200, // Transition out duration
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
     });
     $(".modal").modal("open");
-    $("#modal1").show();
+    // $("#modal1").show();
   }
 
   function showCardGroup(group) {
@@ -70,6 +70,8 @@ jQuery(function() {
         country.name = "Lao";
       } else if (country.name.indexOf("Congo (Democratic Republic") === 0) {
         country.name = "Congo (Democratic Republic)";
+      } else if (country.name.indexOf('Venezuela (Bolivarian') === 0) {
+        country.name = 'Venezuela';
       }
 
       // first panel
@@ -92,41 +94,43 @@ jQuery(function() {
       $("#two").show();
 
       // first panel
-      if (country.code === 'US') {
-        $("#rate").css('left: 0');
-        $("#rate").text(
-            "1 USD buys you a song – $0.99 on iTunes"
-          );
-      } else {
-        $("#rate").css('left: 12%');
-          $("#rate").text(
-            "1 USD = " + country.rate.toFixed(2) + " " + country.currency
-          );
-      }
-
+      $("#rate").css('left: 12%');
+      $("#rate").text(
+        "1 USD = " + country.rate.toFixed(2) + " " + country.currency
+      );
       $("#currency-name").text("(" + country.currencyName + ")");
 
       // first panel
-      $("#capital").text("Conditions in " + country.capital);
+      $("#capital").text("Current conditions");
       //$('#today').text(new Date());
       $("#icon").attr(
         "src",
         "http://openweathermap.org/img/wn/" +
-          country.weather.weather[0].icon +
-          "@2x.png"
+        country.weather.weather[0].icon +
+        "@2x.png"
       );
       $("#conditions").text(country.weather.weather[0].description);
       $("#temp").text(Math.floor(country.weather.main.temp));
       $("#humidity").text("Humidity: " + country.weather.main.humidity + "%");
       $("#wind").text(
         "Wind: " +
-          Math.floor(country.weather.wind.speed) +
-          "mph " +
-          degToCompass(country.weather.wind.deg)
+        Math.floor(country.weather.wind.speed) +
+        "mph " +
+        degToCompass(country.weather.wind.deg)
       );
+
+      
       if (typeof country.weather.visibility === "number") {
         $("#visibility").text(
           "Visibility: " + Math.floor(country.weather.visibility / 1000) + "mi"
+        );
+      } else if (typeof country.weather.visibility === 'string') {
+        $("#visibility").text(
+          "Visibility: " + country.weather.visibility + "mi"
+        );
+      } else if (country.weather.visibility === undefined) {
+        $("#visibility").text(
+          "Visibility: ---"
         );
       }
     } else if (group === 3) {
@@ -152,7 +156,7 @@ jQuery(function() {
     }
   }
 
-  $("#next").click(function(event) {
+  $("#next").click(function (event) {
     event.preventDefault();
 
     cardGroup++;
@@ -162,7 +166,7 @@ jQuery(function() {
     showCardGroup(cardGroup);
   });
 
-  $("#prev").click(function(event) {
+  $("#prev").click(function (event) {
     event.preventDefault();
     cardGroup--;
     if (cardGroup === 0) {
@@ -176,24 +180,26 @@ jQuery(function() {
   var modalImage = $("#modal-full-screen-image");
   var modalImageCaption = $("#image-caption");
 
-  $("#modal-full-screen-close").click(function(event) {
+  $("#modal-full-screen-close").click(function (event) {
     event.preventDefault();
     // close full-screen modal
     fullScreenModal.hide();
-    
-    $("#modal1").show();
+
+    $(".modal").modal("open");
+    //$("#modal1").show();
     $(".modal-overlay").show();
 
   });
 
-  $(".img").click(function(event) {
+  $(".img").click(function (event) {
     event.preventDefault();
     // show full-screen modal
     fullScreenModal.show();
     modalImage.attr("src", $(this).attr("data-url"));
     modalImageCaption.text($(this).attr("data-name"));
 
-    $("#modal1").hide();
+    $(".modal").modal("close");
+    //$("#modal1").hide();
     $(".modal-overlay").hide();
   });
 
@@ -207,7 +213,7 @@ jQuery(function() {
       scale: 1,
       animate: true
     },
-    onRegionClick: function(event, code) {
+    onRegionClick: function (event, code) {
       var map = $("#map1").vectorMap("get", "mapObject");
       country.name = map.getRegionName(code);
       if (code === "_2") {
@@ -220,7 +226,7 @@ jQuery(function() {
       country.code = code;
       country
         .getCountry()
-        .then(function(response) {
+        .then(function (response) {
           console.log('country', response);
           country.capital = response.capital;
           country.name = response.name;
@@ -229,23 +235,29 @@ jQuery(function() {
           country.currency = response.currencies[0].code;
           country.currencyName = response.currencies[0].name;
           country.currencySymbol = response.currencies[0].symbol;
-          country.latitude = response.latlng[0];
-          country.longitude = response.latlng[1];
+          if (country.name.toLowerCase() === 'greenland') {
+            country.latitude = response.latlng[1];
+            country.longitude = response.latlng[0];
+          }
+          else {
+            country.latitude = response.latlng[0];
+            country.longitude = response.latlng[1];
+          }
           country.population = response.population;
           country.area = response.area;
           country.nativeName = response.nativeName;
           country.region = response.region;
         })
-        .then(function(response) {
+        .then(function (response) {
           var capitalCity = country.capital;
           if (capitalCity.indexOf("Washington,") < 0) {
             if (capitalCity.indexOf(" ") >= 0) {
-              capitalCity = capitalCity.substr(0, capitalCity.indexOf(" "));
+              capitalCity = capitalCity.replace(' ', '	%20');
             }
           }
           //
           // get capital image
-          database_ref.once("value", function(snapshot) {
+          database_ref.once("value", function (snapshot) {
             for (obj in snapshot.val()) {
               if (snapshot.val()[obj].code === country.code) {
                 country.capitalImage = snapshot.val()[obj].attraction.capital;
@@ -263,12 +275,12 @@ jQuery(function() {
             }, 100);
           });
 
-          getWeatherInfo(capitalCity)
-            .then(function(data) {
+          getWeatherInfo(country.latitude, country.longitude)
+            .then(function (data) {
               //console.log("weather", data);
               country.weather = data;
             })
-            .fail(function(err) {
+            .fail(function (err) {
               var errMsg =
                 "Oops! Error while fetching weather information for " +
                 country.capital +
@@ -278,22 +290,22 @@ jQuery(function() {
               alert(errMsg);
             });
         })
-        .then(function(response) {
+        .then(function (response) {
           // currency
           getExchangeRate(country.currency)
-            .then(function(data) {
+            .then(function (data) {
               country.rate = parseFloat(data);
               //console.log("rate", rate);
             })
-            .then(function(response) {
+            .then(function (response) {
               country.dish = getNationalDish(country.code);
               console.log("country.dish", country.dish);
             })
-            .fail(function(err) {
+            .fail(function (err) {
               alert(err);
             });
         })
-        .then(function(response) {});
+        .then(function (response) { });
     },
     series: {
       regions: [
@@ -497,7 +509,7 @@ jQuery(function() {
     $.ajax({
       type: "get",
       url: "https://restcountries.eu/rest/v2/all",
-      success: function(response) {
+      success: function (response) {
         for (element in response) {
           if (
             response[element].name.length > "United States of America".length

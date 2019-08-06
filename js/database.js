@@ -1353,7 +1353,7 @@ var dishes = [
     country: "United Kingdom",
     name: "Fish & Chips",
     image:
-      "https://www.thespruceeats.com/thmb/hToYLa2CWDEZKNX4VROsCSE3K0M=/1500x1000/filters:fill(auto,1)/best-fish-and-chips-recipe-434856-Hero-5b61b89346e0fb00500f2141.jpg"
+      "https://previews.123rf.com/images/denismart/denismart1811/denismart181100073/111462473-traditional-british-fish-and-chips-with-tartar-sauce-on-chopping-board-and-green-peas-on-white-stone.jpg"
   },
   {
     code: "US",
@@ -1431,6 +1431,30 @@ var dishes = [
     name: "Dovi",
     image:
       "https://blog.arousingappetites.com/wp-content/uploads/2015/05/Zimbabwe-Dovi-ft-image-w-graphic.jpg"
+  },
+  {
+    code: "TF",
+    country: "French Southern Territories",
+    name: "Blue mussels",
+    image: "https://blog.tepapa.govt.nz/wp-content/uploads/2016/01/12-Mussels-3-ways-768x634.jpg"
+  },
+  {
+    code: "FK",
+    country: "Falkland Islands",
+    name: "Fried Fish",
+    image: "http://www.best-country.org//img/article/715/3715/3453thai_orig.jpg"
+  },
+  {
+    code: "NC",
+    country: "New Caledonia",
+    name: "Isle of Pines",
+    image: "https://media2.trover.com/T/55f543727eb4f40eab010277/fixedw_large_4x.jpg"
+  },
+  {
+    code: "EH",
+    country: "Western Sahara",
+    name: "Couscous",
+    image: "https://bigbellyburst.files.wordpress.com/2011/04/img_3276.jpg"
   }
 ];
 
