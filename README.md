@@ -31,7 +31,7 @@ https://materializecss.com/modals.html [Grid & Modal]
 
 JSON:
 
-[Object that contain dish name and image]
+[Object that contains dish name and image]
 
 Moment JS:
 
