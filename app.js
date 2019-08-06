@@ -93,7 +93,7 @@ jQuery(function () {
 
       // local time
       country.timezone = getCurrentTime(country.weather.timezone);
-      var m = moment(country.timezone).format("dddd, MMMM Do YYYY, h:mm a");
+      var m = moment(country.timezone).format("dddd, MMMM Do YYYY, hh:mm a");
       $('#theTime').text(m);
 
     } else if (group === 2) {
@@ -528,12 +528,15 @@ jQuery(function () {
   }
 
   function getCurrentTime(cityTz) {
+    console.log('cityTz', cityTz);
     // current local time
     var date = new Date();
     var localTime = date.getTime();
     var localOffset = date.getTimezoneOffset() * 60000;
     var utcTime = localTime + localOffset;
+    console.log('utcTime', utcTime);
     var cityTime = utcTime + (cityTz * 1000);
+    console.log('cityTime', cityTime);
     var newDate = new Date(cityTime);
 
     return newDate.toLocaleString();
