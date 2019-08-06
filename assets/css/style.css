@@ -1,13 +1,18 @@
+.modal {
+  max-height: 80%;
+  width: 70%;
+}
+
 .img {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
-  height: 320px;
+  background-position: center;
+  height: 320px;  
   width: 100%;
-  float: left;
-  position: relative;
   cursor: pointer;
 }
+
+
 
 .modal-content {
   max-height: 529px;
@@ -44,6 +49,7 @@
 
 #current-weather-conditions {
   height: 320px;
+  max-height: 320px;
 }
 
 #current-exchange-rate {
@@ -53,26 +59,29 @@
   font-size: 2.4rem;
   height: 320px;
   text-align: center;
+  max-height: 320px;
 }
 
 #rate {
-  position: absolute;
+  display: inline-block;
+  /* position: absolute; */
   text-align: center;
-  bottom: 50%;
-  left: 12%;
+  /* bottom: 50%; */
+  /* left: 12%; */
+  margin-top: 29%;
 }
 
 #currency-name {
-  position: absolute;
+  /* position: absolute; */
   display: inline-block;
-  bottom: 40%;
+  /* bottom: 40%; */
   font-size: 20px;
-  left: 13%;
+  /* left: 13%; */
 }
 
 #attraction-name,
 #food-name {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 /* enlarge modal */
@@ -102,7 +111,7 @@
 #image-caption {
   display: block;
   margin: auto;
-  width: 80%;
+  width: 100%;
   max-width: 700px;
   text-align: center;
   color: #ccc;
